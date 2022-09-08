@@ -1,4 +1,4 @@
-FROM alpine:latest
-ADD HelloWorld.class HelloWorld.class
-RUN apk --update add openjdk8-jre
-ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom", "HelloWorld"]
+FROM anapsix/alpine-java 
+LABEL maintainer="shanem@liatrio.com"
+COPY /target/spring-petclinic-1.5.1.jar /home/spring-petclinic-1.5.1.jar 
+CMD ["java","-jar","/home/spring-petclinic-1.5.1.jar"]
