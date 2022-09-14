@@ -1,7 +1,7 @@
-FROM tomcat:8.0-alpine
-LABEL maintainer="chinniprashanth001@gmail.com"
-
-COPY target/hello-world-war-1.0.0.war /usr/local/tomcat/webapps/
-
-EXPOSE 8080
-CMD ["catalina.sh", "run"]
+FROM python:3-alpine
+WORKDIR /usr/src/app
+EXPOSE 8000
+COPY requirements.txt .
+RUN pip install -qr requirements.txt
+COPY server.py .
+CMD ["python3", "./server.py"]
