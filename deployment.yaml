@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hello-world
+spec:
+  replicas: 1 
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+      - name: hello-world-pod
+        image: 024692250340.dkr.ecr.ap-south-1.amazonaws.com/hello-world:63
+        ports: 
+        - containerPort: 80
+        - containerPort: 443
