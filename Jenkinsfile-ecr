@@ -4,13 +4,18 @@ pipeline {
 
       
       imagename = "024692250340.dkr.ecr.ap-south-1.amazonaws.com/hello-world"
-      registryCredential = 'aws-credmain'
+      registryCredential = 'aws-cred'
       dockerImage = 'hello'
 
  } 
     options {
         skipStagesAfterUnstable()
     }
+     tools {
+    jdk 'Java11'
+    maven 'Maven 3.6.3'
+
+  }
     stages {
          stage('Clone repository') { 
             steps {
@@ -32,7 +37,7 @@ pipeline {
         stage('Deploy Image') {
             steps{
             script {
-              docker.withRegistry('https://024692250340.dkr.ecr.ap-south-1.amazonaws.com/hello-world:aws-credmain')  {
+              docker.withRegistry('https://024692250340.dkr.ecr.ap-south-1.amazonaws.com/hello-world:aws-cred') {
                dockerImage.push("$BUILD_NUMBER")
                dockerImage.push('latest')
         }
